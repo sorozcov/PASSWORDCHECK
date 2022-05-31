@@ -35,16 +35,20 @@ tmp_lines = filePasswords.readlines(BUF_SIZE)
 TOTAL_SIZE = TOTAL_SIZE + BUF_SIZE
 # while TOTAL_SIZE<1000:
 while tmp_lines:
-    for line in filePasswords.read(1024):
-        passw = line.rstrip()
-        if(passw==password):
-            found_password_in_dict = found_password_in_dict + 1
-            password_found = passw
-        time.sleep(0.1)
-        i=i+1
-        bar.update(i)
-    TOTAL_SIZE = TOTAL_SIZE + BUF_SIZE
-    tmp_lines = filePasswords.readlines(BUF_SIZE)
+    try:
+        for line in filePasswords.read(1024):
+            passw = line.rstrip()
+            if(passw==password):
+                found_password_in_dict = found_password_in_dict + 1
+                password_found = passw
+            time.sleep(0.1)
+            i=i+1
+            bar.update(i)
+        TOTAL_SIZE = TOTAL_SIZE + BUF_SIZE
+        tmp_lines = filePasswords.readlines(BUF_SIZE)
+    except KeyboardInterrupt:
+        break
+    
 print("\n")
 if(found_password_in_dict>0):
     print("Password has ben found in leaked dictionary. {}".format(found_password_in_dict))
