@@ -39,7 +39,7 @@ while tmp_lines:
         passw = line.rstrip()
         if(passw==password):
             found_password_in_dict = found_password_in_dict + 1
-            password_found = x
+            password_found = passw
         time.sleep(0.1)
         i=i+1
         bar.update(i)
